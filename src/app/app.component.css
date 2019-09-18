@@ -8,7 +8,7 @@ button:focus{ outline: none;box-shadow:none;}
 .searchBox .input-group { max-width: 300px; }
 .searchBox .input-group>.custom-select:not(:last-child), .searchBox .input-group>.form-control:not(:last-child) { border-top-right-radius: 0.25em; border-bottom-right-radius: 0.25em; }
 .typeSection { margin-top: 15%; }
-.typeSearch { color: #ffffff; font-size: 80px; margin-bottom: 20px; }
+.typeSearch { color: #ffffff; font-size: 80px; margin-bottom: 20px; display: block; }
 .searchBoxCont { width: 80%; margin: auto }
 .searchBoxCont p { font-size: 25px; color: #ffffff; line-height: 35px; }
 .WheatherPop { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1050; overflow: hidden; outline: 0;background: rgba(0, 0, 0, 0.4196078431372549);}
