@@ -84,7 +84,7 @@
                 <div class="cityText">Wheather in {{cards.name}}, {{cards.sys.country}}</div>
                 <div class="cityTemp"><img src='https://openweathermap.org/img/wn/{{cards.weather[0].icon}}@2x.png'/>{{cards.main.temp}} &#8451;</div>
                 <div class="cityStorm">{{cards.weather[0].main}}</div>
-                <div class="cardDate">{{wheatherData.dt * 1000 | customDateFormat }}</div>
+                <div class="cardDate">{{wheatherData.dt * 1000 | date : 'd MMM y': 'wheatherData.timezone'  }}</div>
             </div>
        
           </div>
