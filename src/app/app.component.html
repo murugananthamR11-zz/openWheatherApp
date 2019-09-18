@@ -1,20 +1,96 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<div class="container-fluid WheatherApp">
+  <div class="OpenWheather">
+  <!-- header start -->
+    <div class="header">
+      <div class="row align-items-center">
+        <div class="col-sm-6 logo">WHEATHER</div>
+        <div class="col-sm-6 searchBox">
+         
+            <div class="input-group">
+              <input type="text" class="form-control" [(ngModel)]= 'searchValue' placeholder="Search" required>
+              <button class="btn searchBtn" type="submit" (click)='onSearch()'> <img src="assets/search.png"/> </button>
+              <div class="error" *ngIf='emptyField && !searchValue'>
+                  Please enter Keyword.
+              </div>
+            </div>
+         
+        </div>
+      </div>
+    </div>
+  <!-- header end -->
+  <!-- content start -->
+    <div class="row typeSection" *ngIf='cardsArray.length == 0'>
+      <div class="col-sm-12">
+        <div class="searchBoxCont">
+          <h1 class="typeSearch">Type the city name <span><img src="assets/finger.png"/></span> to search</h1>
+          <p>Wheather is the state of the atmosphere, describing for example the degree to <br>
+            which it is hot or hold, wet or dry, carm or stormy,clear or cloudy</p>
+        </div>
+      </div>
+    </div>
+    <!-- content start -->
+    <!-- Wheather details popup start -->
+    <div class='WheatherPop' *ngIf = 'wheatherShow'>
+      <div class="modal-dialog  modal-dialog-centered">
+        <div class="modal-content"> 
+          <div class="modal-header">
+            <button type="button" class="close" (click) = 'popClose();'><img src="assets/close.png"/></button>
+          </div>
+          <div class="modal-body">
+            <div class="cityText">Wheather in {{wheatherData.name}}, {{wheatherData.sys.country}}</div>
+            <div class="cityTemp"><img src='https://openweathermap.org/img/wn/{{wheatherData.weather[0].icon}}@2x.png'/>{{wheatherData.main.temp}} &#8451;</div>
+            <div class="cityStorm">{{wheatherData.weather[0].main}}</div>
+            <ul class="wheatherList">
+              <li><span>Wind</span><span><strong>{{wheatherData.wind.speed}} m/s, {{wheatherData.wind.deg}}&#8451;</strong></span></li>
+              <li><span>Humidity</span><span><strong>{{wheatherData.main.humidity}}% </strong></span></li>
+              <li><span>Pressure</span><span><strong>{{wheatherData.main.pressure}} hpa </strong></span></li>
+              <li><span>Sunrise</span><span><strong>{{wheatherData.sys.sunrise * 1000 | date: 'shortTime' : 'wheatherData.timezone' }} </strong> </span></li>
+              <li><span>Sunset</span><span><strong>{{wheatherData.sys.sunset * 1000 | date : 'shortTime' : 'wheatherData.timezone'  }} </strong></span></li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)='addCard();' *ngIf='addShow'>Add</button>
+            <button type="button" class="btn btn-danger" (click)='removeCard();'  *ngIf='removeShow'>Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Wheather details popup end -->
+    <!-- Error popup start -->
+    <div class='WheatherPop errorPop' *ngIf = 'WheatherError'>
+        <div class="modal-dialog  modal-dialog-centered">
+          <div class="modal-content"> 
+            <div class="modal-body">
+              <img src="assets/alert.png"/>
+              <div class="errorText">Couldn't find "{{searchValue}}". <br> Please try another keyword</div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary"  (click) = 'popClose();'>OKay</button>
+            </div>
+          </div>
+        </div>
+      </div>
+       <!-- Error popup end -->
+      <!-- Loader start -->
+      <div class='WheatherPop' *ngIf='loading'>
+        <div class="loader"> <div class="spinner-border"></div></div>
+      </div>
+      <!-- Loader end -->
+      <!-- wheather details card section start -->
+      <div class="row cardWrap">
+        <div class="col-sm-12">
+          <div class="cardSec">
+            <div class="card" *ngFor='let cards of cardsArray; let i = index' (click)='openCard(i);'>
+                <div class="cityText">Wheather in {{cards.name}}, {{cards.sys.country}}</div>
+                <div class="cityTemp"><img src='https://openweathermap.org/img/wn/{{cards.weather[0].icon}}@2x.png'/>{{cards.main.temp}} &#8451;</div>
+                <div class="cityStorm">{{cards.weather[0].main}}</div>
+                <div class="cardDate">{{wheatherData.dt * 1000 | date : 'd MMM y': 'wheatherData.timezone'  }}</div>
+            </div>
+       
+          </div>
+        </div>
+      </div>
+      <!-- wheather details card section end -->
+    </div>  
+  </div>
+  
