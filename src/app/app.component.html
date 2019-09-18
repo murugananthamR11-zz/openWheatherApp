@@ -4,16 +4,16 @@
     <div class="header">
       <div class="row align-items-center">
         <div class="col-sm-6 logo">WHEATHER</div>
-        <div class="col-sm-6 searchBox">
-         
+        <div class="col-sm-6 ">
+          <form class="searchBox">
             <div class="input-group">
-              <input type="text" class="form-control" [(ngModel)]= 'searchValue' placeholder="Search" required>
+              <input type="text" class="form-control" [(ngModel)]= 'searchValue' name="searchValue" placeholder="Search" required>
               <button class="btn searchBtn" type="submit" (click)='onSearch()'> <img src="assets/search.png"/> </button>
               <div class="error" *ngIf='emptyField && !searchValue'>
                   Please enter Keyword.
               </div>
             </div>
-         
+          </form>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
     </div>
     <!-- content start -->
     <!-- Wheather details popup start -->
-    <div class='WheatherPop' *ngIf = 'wheatherShow'>
+    <div class='WheatherPop' *ngIf = 'wheatherPopShow'>
       <div class="modal-dialog  modal-dialog-centered">
         <div class="modal-content"> 
           <div class="modal-header">
@@ -38,26 +38,26 @@
           </div>
           <div class="modal-body">
             <div class="cityText">Wheather in {{wheatherData.name}}, {{wheatherData.sys.country}}</div>
-            <div class="cityTemp"><img src='https://openweathermap.org/img/wn/{{wheatherData.weather[0].icon}}@2x.png'/>{{wheatherData.main.temp}} &#8451;</div>
+            <div class="cityTemp"><img src='https://openweathermap.org/img/wn/{{wheatherData.weather[0].icon}}@2x.png'/>{{wheatherData.main.temp}} &#176;C</div>
             <div class="cityStorm">{{wheatherData.weather[0].main}}</div>
             <ul class="wheatherList">
-              <li><span>Wind</span><span><strong>{{wheatherData.wind.speed}} m/s, {{wheatherData.wind.deg}}&#8451;</strong></span></li>
+              <li><span>Wind</span><span><strong>{{wheatherData.wind.speed}} m/s, {{wheatherData.wind.deg}}&#176;C</strong></span></li>
               <li><span>Humidity</span><span><strong>{{wheatherData.main.humidity}}% </strong></span></li>
               <li><span>Pressure</span><span><strong>{{wheatherData.main.pressure}} hpa </strong></span></li>
-              <li><span>Sunrise</span><span><strong>{{wheatherData.sys.sunrise * 1000 | date: 'shortTime' : 'wheatherData.timezone' }} </strong> </span></li>
-              <li><span>Sunset</span><span><strong>{{wheatherData.sys.sunset * 1000 | date : 'shortTime' : 'wheatherData.timezone'  }} </strong></span></li>
+              <li><span>Sunrise</span><span><strong>{{wheatherData.sys.sunrise * 1000 | date: 'HH:mm' : 'wheatherData.timezone' }} </strong> </span></li>
+              <li><span>Sunset</span><span><strong>{{wheatherData.sys.sunset * 1000 | date : 'HH:mm' : 'wheatherData.timezone'  }} </strong></span></li>
             </ul>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" (click)='addCard();' *ngIf='addShow'>Add</button>
-            <button type="button" class="btn btn-danger" (click)='removeCard();'  *ngIf='removeShow'>Remove</button>
+            <button type="button" class="btn btn-primary" (click)='addCard();' *ngIf='addBtnShow'>Add</button>
+            <button type="button" class="btn btn-danger" (click)='removeCard();'  *ngIf='removeBtnShow'>Remove</button>
           </div>
         </div>
       </div>
     </div>
     <!-- Wheather details popup end -->
     <!-- Error popup start -->
-    <div class='WheatherPop errorPop' *ngIf = 'WheatherError'>
+    <div class='WheatherPop errorPop' *ngIf = 'WheatherPopError'>
         <div class="modal-dialog  modal-dialog-centered">
           <div class="modal-content"> 
             <div class="modal-body">
@@ -84,7 +84,7 @@
                 <div class="cityText">Wheather in {{cards.name}}, {{cards.sys.country}}</div>
                 <div class="cityTemp"><img src='https://openweathermap.org/img/wn/{{cards.weather[0].icon}}@2x.png'/>{{cards.main.temp}} &#8451;</div>
                 <div class="cityStorm">{{cards.weather[0].main}}</div>
-                <div class="cardDate">{{wheatherData.dt * 1000 | date : 'd MMM y': 'wheatherData.timezone'  }}</div>
+                <div class="cardDate">{{wheatherData.dt * 1000 | customDateFormat }}</div>
             </div>
        
           </div>

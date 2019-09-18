@@ -15,15 +15,15 @@ button:focus{ outline: none;box-shadow:none;}
 .WheatherPop .modal-header { padding: 12px 15px 0; border: 0; }
 .WheatherPop .modal-footer { justify-content: center; border: 0; }
 .WheatherPop .modal-body { padding: 0 1rem; text-align: center; }
-.cityText { font-size: 25px; font-weight: bold; }
+.cityText { font-size: 28px; font-weight: bold; }
 .WheatherPop .modal-content { border-radius: 10px; padding-bottom: 25px;}
 .WheatherPop .modal-footer{ padding: 10px}
 .cityTemp { font-size: 30px; font-weight: bold;}
 .cityTemp img{ height: 60px;}
 .cityStorm { font-size: 20px; }
-.wheatherList { margin: 20px auto; padding: 0; list-style-type: none; max-width: 320px; }
-.wheatherList li { position: relative; font-size: 18px; display: flex; }
-.wheatherList li:before { content: ''; width: 8px; height: 8px; background: #5e77ff; position: absolute; border-radius: 50%; left: 30px; top: 0; bottom: 0; margin: auto; }
+.wheatherList { margin: 20px auto;padding-left: 60px; list-style-type: none; max-width: 320px; }
+.wheatherList li { position: relative; font-size: 20px; display: flex; }
+.wheatherList li:before { content: ''; width: 6px; height: 6px; background: #5e77ff; position: absolute; border-radius: 50%; left: -15px; top: 0; bottom: 0; margin: auto; }
 .wheatherList li span {display: inline-block; text-align: left; }
 .wheatherList li span:nth-child(1){ width: 40%}
 .wheatherList li span:nth-child(2){ width: 60%}
@@ -38,7 +38,7 @@ button:focus{ outline: none;box-shadow:none;}
 .cardSec .card{max-width: 22%;min-width: 22%; width:100%;margin: 10px;padding: 25px 10px 5px;border-radius: 10px;text-align: center;transition: 0.5s;cursor: pointer;}
 .loader div{ color: #ffffff;}
 .cardDate{ text-align: right; font-size: 15px;  }
-.cardWrap{ margin-top: 10%}
+.cardWrap{ margin-top: 5%}
 .cardSec .card:hover{ transform: scale(1.02)}
 @media screen and (max-width:1250px) {
 .typeSearch { font-size: 40px; }

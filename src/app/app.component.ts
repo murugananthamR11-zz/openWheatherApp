@@ -1,5 +1,17 @@
 import { Component,OnInit } from '@angular/core';
 import{ WheatherService} from '../app/wheather.service'
+import { Pipe, PipeTransform } from '@angular/core';
+import { DatePipe } from '@angular/common';
+@Pipe({
+  name: 'customDateFormat',
+})
+export class customDateFormatPipe implements PipeTransform {
+  transform(value: string) {
+     var datePipe = new DatePipe("en-US");
+      value = datePipe.transform(value, 'dd-mm-yyyy');
+      return value;
+  }
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,20 +20,20 @@ import{ WheatherService} from '../app/wheather.service'
 export class AppComponent implements OnInit {
 
  searchValue:string;
- wheatherShow:boolean;
- WheatherError:boolean;
+ wheatherPopShow:boolean;
+ WheatherPopError:boolean;
  wheatherData;
  cardsArray =[]
  emptyField:boolean = false;
  loading:boolean = false;
- addShow:boolean =false;
- removeShow:boolean = false;
- cardArryIndex:number;
- date = new Date();
+ addBtnShow:boolean =false;
+ removeBtnShow:boolean = false;
+ cardArrayIndex:number;
+ 
  constructor(private ws:WheatherService){}
 
   ngOnInit(){
-    console.log(this.date)
+   
   }
 
   onSearch(){
@@ -33,42 +45,46 @@ export class AppComponent implements OnInit {
 
     this.loading = true;
 
+   
     this.ws.getWheather(this.searchValue).subscribe(res => {
+     console.log(res)
       this.wheatherData = res;
-      this.wheatherShow = true;
-      this.addShow = true;
+      this.wheatherPopShow = true;
+      this.addBtnShow = true;
       this.loading = false;
     },(err) => {
-      this.WheatherError = true;
+      this.WheatherPopError = true;
       this.loading = false;
-      this.addShow = false;
+      this.addBtnShow = false;
     });
+
+
+
+
   }
   addCard(){
     this.cardsArray.unshift(this.wheatherData);
-    this.wheatherShow = false;
-    this.addShow = false;
+    this.wheatherPopShow = false;
+    this.addBtnShow = false;
     this.searchValue = '';
-    console.log(this.cardsArray)
   }
   popClose(){
-    this.wheatherShow = false;
-    this.WheatherError = false;
-    this.addShow = false;
-    this.removeShow = false;
+    this.wheatherPopShow = false;
+    this.WheatherPopError = false;
+    this.addBtnShow = false;
+    this.removeBtnShow = false;
     this.emptyField = false;
     this.searchValue = '';
   }
   openCard(i){
-    this.cardArryIndex = i
+    this.cardArrayIndex = i
     this.wheatherData = this.cardsArray[i];
-    this.wheatherShow = true;
-    this.removeShow = true;
+    this.wheatherPopShow = true;
+    this.removeBtnShow = true;
   }
   removeCard(){
-    this.wheatherShow = false;
-    this.removeShow = false;
-    console.log(this.cardArryIndex);
-    this.cardsArray.splice(this.cardArryIndex,1)
+    this.wheatherPopShow = false;
+    this.removeBtnShow = false;
+    this.cardsArray.splice(this.cardArrayIndex,1)
   }
 }
