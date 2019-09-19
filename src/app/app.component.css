@@ -40,6 +40,7 @@ button:focus{ outline: none;box-shadow:none;}
 .cardDate{ text-align: right; font-size: 15px;  }
 .cardWrap{ margin-top: 5%}
 .cardSec .card:hover{ transform: scale(1.02)}
+.alertImg{ width: 40px; height: 40px; background: url('../assets/alert.png') no-repeat;    margin:10px auto;}
 @media screen and (max-width:1250px) {
 .typeSearch { font-size: 40px; }
 .searchBoxCont p { font-size: 18px; line-height: 25px }

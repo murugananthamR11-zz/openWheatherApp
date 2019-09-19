@@ -58,10 +58,10 @@ export class AppComponent implements OnInit {
     this.addBtnShow = false;
     this.removeBtnShow = false;
     this.emptyField = false;
-    this.searchValue = ''
+    this.searchValue = '';
   }
   openCard(i){
-    this.getCardIndex = i
+    this.getCardIndex = i ;
     this.wheatherData = this.cardsArray[i];
     this.wheatherPopShow = true;
     this.removeBtnShow = true;
