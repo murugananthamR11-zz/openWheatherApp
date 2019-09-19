@@ -72,7 +72,7 @@ button:focus{ outline: none;box-shadow:none;}
 .typeSearch { font-size: 30px; }
 .typeSearch img { height: 20px; }
 .searchBoxCont p { font-size: 16px; line-height: normal }
-.wheatherList{max-width: 250PX; margin: 5px auto;}
+.wheatherList{max-width: 300PX; margin: 5px auto;}
 .wheatherList li{ font-size: 15px;}
 .wheatherList li span { width: 40%}
 .cityTemp img{ height: 40px;}
@@ -80,4 +80,5 @@ button:focus{ outline: none;box-shadow:none;}
 .WheatherPop .modal-header { padding: 5px 10px 0;}
 .cardSec .card{max-width: 45%;min-width: 45%; justify-content: center;}
 .searchBox{ padding: 0;}
+.WheatherPop .modal-content{    padding-bottom: 10px;}
 }

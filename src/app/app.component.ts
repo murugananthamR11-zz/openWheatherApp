@@ -17,8 +17,8 @@ export class AppComponent implements OnInit {
  loading:boolean = false;
  addBtnShow:boolean =false;
  removeBtnShow:boolean = false;
- cardArrayIndex:number;
- 
+ getCardIndex:number;
+
  constructor(private ws:WheatherService){}
 
   ngOnInit(){
@@ -34,23 +34,16 @@ export class AppComponent implements OnInit {
 
     this.loading = true;
     
-    this.ws.getWheather(this.searchValue).subscribe(res => {
-     console.log(res)
+    this.ws.getWheather(this.searchValue).subscribe(res => {    
       this.wheatherData = res;
       this.wheatherPopShow = true;
       this.addBtnShow = true;
       this.loading = false;
-      
-      
+           
     },(err) => {
       this.WheatherPopError = true;
-      this.loading = false;
-      this.addBtnShow = false;
-      
+      this.loading = false;    
     });
-
-
-
 
   }
   addCard(){
@@ -68,7 +61,7 @@ export class AppComponent implements OnInit {
     this.searchValue = ''
   }
   openCard(i){
-    this.cardArrayIndex = i
+    this.getCardIndex = i
     this.wheatherData = this.cardsArray[i];
     this.wheatherPopShow = true;
     this.removeBtnShow = true;
@@ -76,6 +69,6 @@ export class AppComponent implements OnInit {
   removeCard(){
     this.wheatherPopShow = false;
     this.removeBtnShow = false;
-    this.cardsArray.splice(this.cardArrayIndex,1)
+    this.cardsArray.splice(this.getCardIndex,1)
   }
 }
