@@ -4,7 +4,7 @@ button:focus{ outline: none;box-shadow:none;}
 .logo { color: #ffffff; font-size: 22px; font-weight: bold;}
 .header { padding: 30px 20px }
 .searchBtn { position: absolute; right: 0; z-index: 9; }
-.searchBox { display: flex; justify-content: flex-end; }
+.searchBox { display: flex; justify-content: flex-end;padding-right: 30px; }
 .searchBox .input-group { max-width: 300px; }
 .searchBox .input-group>.custom-select:not(:last-child), .searchBox .input-group>.form-control:not(:last-child) { border-top-right-radius: 0.25em; border-bottom-right-radius: 0.25em; }
 .typeSection { margin-top: 15%; }
@@ -21,12 +21,12 @@ button:focus{ outline: none;box-shadow:none;}
 .cityTemp { font-size: 30px; font-weight: bold;}
 .cityTemp img{ height: 60px;}
 .cityStorm { font-size: 20px; }
-.wheatherList { margin: 20px auto;padding-left: 60px; list-style-type: none; max-width: 320px; }
+.wheatherList { margin: 20px auto;padding-left: 60px; list-style-type: none; max-width: 350px; }
 .wheatherList li { position: relative; font-size: 20px; display: flex; }
 .wheatherList li:before { content: ''; width: 6px; height: 6px; background: #5e77ff; position: absolute; border-radius: 50%; left: -15px; top: 0; bottom: 0; margin: auto; }
 .wheatherList li span {display: inline-block; text-align: left; }
-.wheatherList li span:nth-child(1){ width: 40%}
-.wheatherList li span:nth-child(2){ width: 60%}
+.wheatherList li span:nth-child(1){ width: 45%}
+.wheatherList li span:nth-child(2){ width: 70%}
 .WheatherPop .btn-primary{ padding :12px 25px; background-color: #5e77ff}
 .WheatherPop .btn-danger{ padding :12px 25px; background-color:#d0021b}
 .errorText{ font-size: 20px; margin-bottom: 10px;}
@@ -35,7 +35,7 @@ button:focus{ outline: none;box-shadow:none;}
 .error{    position: absolute;bottom: -25px;left: 0;font-size: 15px;color: #dc3545;}
 .loader{display: flex;width: 100%;height: 100%;align-items: center;justify-content: center;}
 .cardSec{ display: flex; flex-wrap: wrap;}
-.cardSec .card{max-width: 22%;min-width: 22%; width:100%;margin: 10px;padding: 25px 10px 5px;border-radius: 10px;text-align: center;transition: 0.5s;cursor: pointer;}
+.cardSec .card{max-width: 22%;min-width: 22%; width:100%;margin: 10px;padding: 25px 15px 5px;border-radius: 10px;text-align: center;transition: 0.5s;cursor: pointer;}
 .loader div{ color: #ffffff;}
 .cardDate{ text-align: right; font-size: 15px;  }
 .cardWrap{ margin-top: 5%}
@@ -63,15 +63,15 @@ button:focus{ outline: none;box-shadow:none;}
 .cityTemp img{ height: 40px;}
 .cityTemp,.cityText { font-size:20px;}
 .cardSec .card{max-width: none;min-width: none; justify-content: center;}
+.searchBox{ padding: 0;}
 }
 @media screen and (max-width:767px) and (orientation:landscape) {
 .header { padding: 15px 10px; }
 .searchBoxCont { width: 95%; }
 .typeSection { margin-top:3%; }
-.typeSearch { font-size: 20px; }
+.typeSearch { font-size: 30px; }
 .typeSearch img { height: 20px; }
-.searchBoxCont p { font-size: 14px; line-height: normal }
-.wheatherList li:before{left: 0px;}
+.searchBoxCont p { font-size: 16px; line-height: normal }
 .wheatherList{max-width: 250PX; margin: 5px auto;}
 .wheatherList li{ font-size: 15px;}
 .wheatherList li span { width: 40%}
@@ -79,4 +79,5 @@ button:focus{ outline: none;box-shadow:none;}
 .cityTemp,.cityText { font-size:20px;}
 .WheatherPop .modal-header { padding: 5px 10px 0;}
 .cardSec .card{max-width: 45%;min-width: 45%; justify-content: center;}
+.searchBox{ padding: 0;}
 }

@@ -24,7 +24,7 @@
         <div class="searchBoxCont">
           <h1 class="typeSearch">Type the city name <span><img src="assets/finger.png"/></span> to search</h1>
           <p>Wheather is the state of the atmosphere, describing for example the degree to <br>
-            which it is hot or hold, wet or dry, carm or stormy,clear or cloudy</p>
+            which it is hot or hold, wet or dry, carm or stormy, clear or cloudy</p>
         </div>
       </div>
     </div>
@@ -84,7 +84,7 @@
                 <div class="cityText">Wheather in {{cards.name}}, {{cards.sys.country}}</div>
                 <div class="cityTemp"><img src='https://openweathermap.org/img/wn/{{cards.weather[0].icon}}@2x.png'/>{{cards.main.temp}} &#8451;</div>
                 <div class="cityStorm">{{cards.weather[0].main}}</div>
-                <div class="cardDate">{{wheatherData.dt * 1000 | date : 'd MMM y': 'wheatherData.timezone'  }}</div>
+                <div class="cardDate">{{wheatherData.dt * 1000 | today }}</div>
             </div>
        
           </div>

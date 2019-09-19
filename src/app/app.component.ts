@@ -33,18 +33,20 @@ export class AppComponent implements OnInit {
     }
 
     this.loading = true;
-
-   
+    
     this.ws.getWheather(this.searchValue).subscribe(res => {
      console.log(res)
       this.wheatherData = res;
       this.wheatherPopShow = true;
       this.addBtnShow = true;
       this.loading = false;
+      
+      
     },(err) => {
       this.WheatherPopError = true;
       this.loading = false;
       this.addBtnShow = false;
+      
     });
 
 
@@ -54,8 +56,8 @@ export class AppComponent implements OnInit {
   addCard(){
     this.cardsArray.unshift(this.wheatherData);
     this.wheatherPopShow = false;
-    this.addBtnShow = false;
-    this.searchValue = '';
+    this.addBtnShow = false;  
+    this.searchValue = ''
   }
   popClose(){
     this.wheatherPopShow = false;
@@ -63,7 +65,7 @@ export class AppComponent implements OnInit {
     this.addBtnShow = false;
     this.removeBtnShow = false;
     this.emptyField = false;
-    this.searchValue = '';
+    this.searchValue = ''
   }
   openCard(i){
     this.cardArrayIndex = i
