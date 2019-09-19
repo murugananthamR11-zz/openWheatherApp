@@ -39,10 +39,12 @@ export class AppComponent implements OnInit {
       this.wheatherPopShow = true;
       this.addBtnShow = true;
       this.loading = false;
+      this.emptyField = false;
            
     },(err) => {
       this.WheatherPopError = true;
-      this.loading = false;    
+      this.loading = false; 
+      this.emptyField = false;   
     });
 
   }

@@ -47,8 +47,7 @@ button:focus{ outline: none;box-shadow:none;}
 .cardSec .card{max-width: 30%;min-width: 30%; }
 }
 @media screen and (max-width:920px) {
-    .cardSec .card{max-width: 47%;min-width: 47%; }
-
+.cardSec .card{max-width: 47%;min-width: 47%; }
 }
  @media screen and (max-width:767px) and (orientation:portrait) {
 .header { padding: 10px 0; }
